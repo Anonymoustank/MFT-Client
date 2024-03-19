@@ -1,6 +1,6 @@
 /* styles.css */
 body{
-  height: 1vh;
+  height: 100vh;
   margin: 0;
   padding: 0;
   background: #3b3646;
@@ -10,21 +10,41 @@ body{
   box-sizing: border-box;
 }
 
+.storageSelector {
+  height: 100%;
+  width: 33%;
+  float: left;
+  background: #625d6e;
+  padding-left: 10px;
+  display: flex;
+  justify-content: center;
+}
+
 .centerBox{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px
+  height: 100%;
 }
 
 .categoryWrapper{
-  height: 310px;
-  width: 460px;
+  height: 100%;
+  width: 100%;
   background: no-repeat center center;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   position: relative;
+
+  a { 
+    color: white;
+    text-decoration: none;
+    font-family: "Lucida Console", "Courier New", monospace;
+    position: relative;
+    grid-row: 1;
+    grid-column: 1;
+  }
+
 }
 
 .categoryWrapper:after{
@@ -48,13 +68,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a29ca9', end
   opacity: 0.4;
 }
 
-.categoryWrapper h1{
+h1{
   color:white;
   font-size: 50px;
   letter-spacing: 2px;
   -webkit-transition: all 0.15s ease 0s; 
   position: relative;
   z-index: 10;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+h2{
+  color:white;
+  font-size: 40px;
+  letter-spacing: 1px;
 }
 
 .categoryWrapper:hover h1{
@@ -68,7 +96,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a29ca9', end
   border: none;
   background: none;
   color:white;
-  width: 250px;
+  width: 275px;
   height:50px;
   font-size: 20px;
   padding: 0;
