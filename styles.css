@@ -11,13 +11,17 @@ body{
 }
 
 .storageSelector {
-  height: 100%;
-  width: 33%;
+  height: 100%; /* cap height to make scroll bar appear, or change overflow */
+  width: 35%;
   float: left;
   background: #625d6e;
   padding-left: 10px;
   display: flex;
   justify-content: center;
+  overflow: auto; //maybe change to overflow: scroll?
+  box-sizing: border-box;
+  padding: 0.5em;
+  overflow-x: hidden; /* remove horizontal scroll bar */
 }
 
 .centerBox{
@@ -81,8 +85,9 @@ h1{
 
 h2{
   color:white;
-  font-size: 40px;
+  font-size: 35px;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 .categoryWrapper:hover h1{
@@ -222,4 +227,25 @@ h2{
 .categoryWrapper button:hover > span > span > span:after{
   width: 100%;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 /* Add styles here to customize the appearance of your app */
