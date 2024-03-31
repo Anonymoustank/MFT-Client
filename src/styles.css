@@ -240,7 +240,7 @@ h2{
   border: none; /* Remove borders */
   color: white; /* White text */
   padding: 12px 16px; /* Some padding */
-  font-size: 16px; /* Set a font size */
+  font-size: 15px; /* Set a font size */
   cursor: pointer; /* Mouse pointer on hover */
   border-radius: 30px; /* rounded buttons */
 }
@@ -276,6 +276,20 @@ h2{
   box-sizing: border-box;
   padding: 0.5em;
   overflow-x: hidden; /* remove horizontal scroll bar */
+}
+
+.buttonPanel {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding: 0.5em;
+  justify-content: center;
+
+  .btn {
+    width: 100%;
+    margin: 0 0.4em;
+  }
 }
 
 /* Add styles here to customize the appearance of your app */
