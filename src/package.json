@@ -1,0 +1,22 @@
+{
+  "name": "Electron",
+  "productName": "Electron",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "Pranav Kadekodi",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "@electron-forge/cli": "7.2.0",
+    "@electron-forge/maker-deb": "7.2.0",
+    "@electron-forge/maker-rpm": "7.2.0",
+    "@electron-forge/maker-squirrel": "7.2.0",
+    "@electron-forge/maker-zip": "7.2.0"
+  },
+  "devDependencies": {
+    "electron": "28.2.0"
+  }
+}

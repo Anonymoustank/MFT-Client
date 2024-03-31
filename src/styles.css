@@ -10,20 +10,6 @@ body{
   box-sizing: border-box;
 }
 
-.storageSelector {
-  height: 100%; /* cap height to make scroll bar appear, or change overflow */
-  width: 35%;
-  float: left;
-  background: #625d6e;
-  padding-left: 10px;
-  display: flex;
-  justify-content: center;
-  overflow: auto; //maybe change to overflow: scroll?
-  box-sizing: border-box;
-  padding: 0.5em;
-  overflow-x: hidden; /* remove horizontal scroll bar */
-}
-
 .centerBox{
   display: flex;
   justify-content: center;
@@ -246,6 +232,35 @@ h2{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
+}
+
+.btn { /*https://www.w3schools.com/howto/howto_css_icon_buttons.asp */
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+
+.storageSelector {
+  height: 100%; /* cap height to make scroll bar appear, or change overflow */
+  width: 35%;
+  float: left;
+  background: #625d6e;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: auto; //maybe change to overflow: scroll?
+  box-sizing: border-box;
+  padding: 0.5em;
+  overflow-x: hidden; /* remove horizontal scroll bar */
 }
 
 /* Add styles here to customize the appearance of your app */
