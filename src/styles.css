@@ -292,4 +292,26 @@ h2{
   }
 }
 
+.storageOptions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0.5em;
+
+  .squareBtn {
+    cursor: pointer;
+    border: 1px solid #1e1f20;
+    background-color: transparent;
+    height: 50px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+    color: white; /* White text */
+    margin: 0 0.4em;
+    vertical-align: top;
+  }
+  .squareBtn:hover {
+    background-color: #3b3646;
+  }
+}
+
 /* Add styles here to customize the appearance of your app */
