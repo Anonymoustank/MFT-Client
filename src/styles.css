@@ -70,11 +70,11 @@ h1{
 }
 
 h2{
-  color:white;
-  font-size: 35px;
-  letter-spacing: 1px;
   text-align: center;
-  height: 100vh;
+  padding: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
 }
 
 .categoryWrapper:hover h1{
@@ -250,48 +250,6 @@ h2{
   background-color: RoyalBlue;
 }
 
-.storageSelector {
-  height: 100%; /* cap height to make scroll bar appear, or change overflow */
-  width: 35%;
-  float: left;
-  background: #625d6e;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: auto; /*maybe change to overflow: scroll? */
-  box-sizing: border-box;
-  padding: 0.5em;
-  overflow-x: hidden; /* remove horizontal scroll bar */
-}
-
-.fileBrowser {
-  height: 100%; /* cap height to make scroll bar appear, or change overflow */
-  width: 65%;
-  float: right;
-  /* background: #625d6e; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: auto; /*maybe change to overflow: scroll? */
-  box-sizing: border-box;
-  padding: 0.5em;
-  overflow-x: hidden; /* remove horizontal scroll bar */
-}
-
-.buttonPanel {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  padding: 0.5em;
-  justify-content: center;
-
-  .btn {
-    width: 100%;
-    margin: 0 0.4em;
-  }
-}
-
 .storageOptions {
   width: 100%;
   display: flex;
@@ -312,6 +270,80 @@ h2{
   .squareBtn:hover {
     background-color: #3b3646;
   }
+}
+
+.buttonPanel {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding: 0.5em;
+  justify-content: center;
+
+  .btn {
+    width: 100%;
+    margin-right: 0.3em;
+    margin-left: 0.3em;
+  }
+}
+
+.fileBrowser {
+  height: 100%; /* cap height to make scroll bar appear, or change overflow */
+  width: 65%;
+  float: right;
+  /* background: #625d6e; */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  overflow: auto; /*maybe change to overflow: scroll? */
+  box-sizing: border-box;
+  padding: 0.5em;
+  overflow-x: hidden; /* remove horizontal scroll bar */
+
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  .buttonPanel {
+    position: absolute;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+}
+
+.storageSelector {
+  height: 100%; /* cap height to make scroll bar appear, or change overflow */
+  width: 35%;
+  float: left;
+  background: #625d6e;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  overflow: auto; /*maybe change to overflow: scroll? */
+  box-sizing: border-box;
+  padding: 0.5em;
+  overflow-x: hidden; /* remove horizontal scroll bar */
+
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  .buttonPanel {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+
+    .btn {
+      margin: 0.6em 0 0 0;
+    }
+
+  }
+
+
 }
 
 /* Add styles here to customize the appearance of your app */
