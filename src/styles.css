@@ -71,7 +71,6 @@ h1{
 
 h2{
   text-align: center;
-  padding: 20px;
   font-size: 30px;
   font-weight: bold;
   color: white;
@@ -256,15 +255,19 @@ h2{
   flex-direction: column;
   box-sizing: border-box;
   padding: 0.5em;
+  overflow: scroll;
+  max-height: 60%;
+  overflow-x: hidden;
+  position: relative;
 
   .squareBtn {
     cursor: pointer;
     border: 1px solid #1e1f20;
     background-color: transparent;
-    height: 50px;
+    min-height: 100px;
     box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
     color: white; /* White text */
-    margin: 0 0.4em;
+    margin: 0 0.6em 1em 0.6em;
     vertical-align: top;
   }
   .squareBtn:hover {
@@ -321,7 +324,7 @@ h2{
   /* display: flex;
   flex-direction: column;
   justify-content: center; */
-  overflow: auto; /*maybe change to overflow: scroll? */
+  overflow: hidden; /*maybe change to overflow: scroll? */
   box-sizing: border-box;
   padding: 0.5em;
   overflow-x: hidden; /* remove horizontal scroll bar */
@@ -331,6 +334,7 @@ h2{
   top: 0;
 
   .buttonPanel {
+    margin-top: 15vh;
     position: absolute;
     bottom: 20px;
     left: 50%;
