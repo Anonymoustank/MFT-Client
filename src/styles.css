@@ -263,16 +263,16 @@ h2{
   .squareBtn {
     cursor: pointer;
     border: 1px solid #1e1f20;
-    background-color: transparent;
+    background-color: #625d6e;
     min-height: 100px;
     box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
     color: white; /* White text */
     margin: 0 0.6em 1em 0.6em;
     vertical-align: top;
   }
-  .squareBtn:hover {
+  /* .squareBtn:hover {
     background-color: #3b3646;
-  }
+  } */
 }
 
 .buttonPanel {
