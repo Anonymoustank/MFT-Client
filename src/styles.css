@@ -255,7 +255,7 @@ h2{
   flex-direction: column;
   box-sizing: border-box;
   padding: 0.5em;
-  overflow: scroll;
+  overflow: auto;
   max-height: 60%;
   overflow-x: hidden;
   position: relative;
@@ -270,9 +270,7 @@ h2{
     margin: 0 0.6em 1em 0.6em;
     vertical-align: top;
   }
-  /* .squareBtn:hover {
-    background-color: #3b3646;
-  } */
+  
 }
 
 .buttonPanel {
@@ -294,7 +292,7 @@ h2{
   height: 100%; /* cap height to make scroll bar appear, or change overflow */
   width: 65%;
   float: right;
-  /* background: #625d6e; */
+  background: #524f59;
   /* display: flex;
   flex-direction: column;
   justify-content: center; */
@@ -346,8 +344,34 @@ h2{
     }
 
   }
+}
 
+.fileOptions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0.5em;
+  overflow: auto;
+  max-height: 70%;
+  overflow-x: hidden;
+  position: relative;
 
+  .fileBtn {
+    cursor: pointer;
+    border: 1px solid #1e1f20;
+    background-color: #625d6e;
+    min-height: 50px;
+    color: white; /* White text */
+    vertical-align: top;
+    text-align: left;
+
+    i {
+      padding-left: 20px;
+    }
+
+  }
+  
 }
 
 /* Add styles here to customize the appearance of your app */
