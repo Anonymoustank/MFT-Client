@@ -4,6 +4,28 @@ body{
   margin: 0;
   padding: 0;
   background: #3b3646;
+  overflow: hidden;
+}
+
+.header {
+  padding-top: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  a {
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+
+    i {
+      padding-right: 5px;
+    }
+  }
+  h2 {
+    text-align: center;
+  }
 }
 
 *{
@@ -249,6 +271,18 @@ h2{
   background-color: RoyalBlue;
 }
 
+.squareBtn {
+  cursor: pointer;
+  border: 1px solid #1e1f20;
+  background-color: #625d6e;
+  min-height: 100px;
+  min-width: 100px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+  color: white; /* White text */
+  margin: 0 0.6em 1em 0.6em;
+  vertical-align: top;
+}
+
 .storageOptions {
   width: 100%;
   display: flex;
@@ -259,17 +293,6 @@ h2{
   max-height: 60%;
   overflow-x: hidden;
   position: relative;
-
-  .squareBtn {
-    cursor: pointer;
-    border: 1px solid #1e1f20;
-    background-color: #625d6e;
-    min-height: 100px;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
-    color: white; /* White text */
-    margin: 0 0.6em 1em 0.6em;
-    vertical-align: top;
-  }
   
 }
 
@@ -372,6 +395,21 @@ h2{
 
   }
   
+}
+
+.buttonContainer {
+  margin: 15px;
+  overflow-y: auto;
+  .squareBtn {
+    margin: 10px;
+    min-width: 150px;
+  }
+  .buttonPanel {
+    position: absolute;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+  }
 }
 
 /* Add styles here to customize the appearance of your app */
