@@ -1,5 +1,5 @@
 # MFT-Client
-A UI written using Electron.js to manage Apache managed file transfers
+A UI written using Electron.js to manage Apache managed file transfers\
 The backend can be found [here](https://github.com/Anonymoustank/mft-client-backend).
 
 ## Install instructions:
