@@ -16,22 +16,33 @@ $(document).ready(function() {
     getData().then(result => {
         for (let i = 0; i < result["storageList"].length; i++) {
             const storageName = result["storageList"][i].storageName
-            $("#mainStorageLocation").append(`<button class='squareBtn'>${storageName}</button>`); //create buttons with storage names
+            const storageId = result["storageList"][i].storageId
+            $("#mainStorageLocation").append(`<button class='squareBtn' id=${storageId}>${storageName}</button>`); //create buttons with storage names
         }
 
         $(".squareBtn, .fileBtn").each(function() { //make buttons toggle-able
-            const lightPurple = "rgb(98, 93, 110)";
+            const lightPurple = "rgb(98, 93, 110)"; //buttons are light purple when not selected, dark purple when they are select
             const darkPurple = "rgb(59, 54, 70)";
     
             $(this).attr("selected", false);
-    
+
             $(this).on("click", function() {
                 const currentColor = $(this).css("background-color")
-                if (currentColor === lightPurple) {
+                var currId = $(this).attr("id");
+
+                if (currentColor === lightPurple) { //select element
                     $(this).css("background-color", darkPurple);
                     $(this).attr("selected", true);
+
+                    $(".squareBtn").each(function() { //deselect all other elements when one is clicked
+                        if ($(this).attr("id") != currId) {
+                            $(this).attr("selected", false);
+                            $(this).css("background-color", lightPurple);
+                        }
+                    })
+
                 } else {
-                    $(this).css("background-color", lightPurple);
+                    $(this).css("background-color", lightPurple); //deselect element
                     $(this).attr("selected", false);
                 }
             });
