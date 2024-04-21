@@ -33,13 +33,15 @@ $(document).ready(function() {
                 if (currentColor === lightPurple) { //select element
                     $(this).css("background-color", darkPurple);
                     $(this).attr("selected", true);
-
-                    $(".squareBtn").each(function() { //deselect all other elements when one is clicked
-                        if ($(this).attr("id") != currId) {
-                            $(this).attr("selected", false);
-                            $(this).css("background-color", lightPurple);
-                        }
-                    })
+                    
+                    if ($(this).attr("class") === "squareBtn") { //deselect other storage buttons when another storage button is clicked
+                        $(".squareBtn").each(function() {
+                            if ($(this).attr("id") != currId) {
+                                $(this).attr("selected", false);
+                                $(this).css("background-color", lightPurple);
+                            }
+                        })
+                    }
 
                 } else {
                     $(this).css("background-color", lightPurple); //deselect element
