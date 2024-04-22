@@ -1,19 +1,33 @@
-async function getData() {
+async function getStorages() { //get names of storages from backend
     try {
-        const response = await fetch('http://localhost:5500/list-storages'); //get data from backend
+        const response = await fetch('http://localhost:5500/list-storages');
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP error! Couldn't fetch storage names. Status: ${response.status}`);
         }
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching storage names:', error);
     }
 }
 
+async function getDirectoryInfo(storageId) { //get the files/directories that a storage has
+    try {
+        const response = await fetch(`http://localhost:5500/list-storages/${storageId}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Couldn't fetch files/directories. Status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching files/directories:', error);
+    }
+}
+
+
 $(document).ready(function() {
 
-    getData().then(result => {
+    getStorages().then(result => {
         for (let i = 0; i < result["storageList"].length; i++) {
             const storageName = result["storageList"][i].storageName
             const storageId = result["storageList"][i].storageId
@@ -42,6 +56,10 @@ $(document).ready(function() {
                             }
                         })
                     }
+
+                    getDirectoryInfo(currId).then(fileResult => {
+                        console.log(fileResult)
+                    })
 
                 } else {
                     $(this).css("background-color", lightPurple); //deselect element
