@@ -1,5 +1,7 @@
 const lightPurple = "rgb(98, 93, 110)"; //buttons are light purple when not selected, dark purple when they are select
 const darkPurple = "rgb(59, 54, 70)";
+var globalStorageId = null; //id of the selected storage
+var globalStorageType = null; //storage type
 
 async function getStorages() { //get names of storages from backend
     try {
@@ -18,14 +20,14 @@ async function getStorages() { //get names of storages from backend
     }
 }
 
-async function getDirectoryInfo(storageId, storageType, storageName) { //get the files/directories that a storage has
+async function getDirectoryInfo(currStorageId, currStorageType, currPath) { //get the files/directories that a storage has
     try {
         $("#listedFileLocation").empty()
         $("#listedFileLocation").append(`<div class="loadingBox"> <h3> Retrieving Files... </h3> <div class="loader"> </div>`)
-        const response = await fetch(`http://localhost:5500/list-storages/${storageId}`, {
+        const response = await fetch(`http://localhost:5500/list-storages/${currStorageId}`, {
             headers: {
-                storagetype: storageType,
-                path: `/`
+                storagetype: currStorageType,
+                path: currPath
             }
         });
         if (!response.ok) {
@@ -38,11 +40,15 @@ async function getDirectoryInfo(storageId, storageType, storageName) { //get the
     }
 }
 
-function makeFileBtnToggleable() {
+function makeFileBtnResponsive() {
     $(".fileBtn").each(function() { 
         
         const thisButton = $(this)
         thisButton.attr("selected", false);
+
+        thisButton.on("dblclick", function() { //on double click, navigate to that directory
+            populateFileBrowser(globalStorageId, globalStorageType, thisButton.attr("resourcePath"))
+        })
 
         thisButton.on("click", function() {
             
@@ -52,12 +58,8 @@ function makeFileBtnToggleable() {
                 thisButton.css("background-color", darkPurple);
                 thisButton.attr("selected", true);
 
-                $(".fileBtn").each(function() { //deselect other storage buttons when another storage button is clicked
-                    if ($(this).attr("id") != thisButton.attr("id")) {
-                        $(this).attr("selected", false);
-                        $(this).css("background-color", lightPurple);
-                    }
-                })
+                deselectOtherButtons(".fileBtn", thisButton.attr("id")) //deselect other file buttons when one is clicked
+
             } else {
                 thisButton.css("background-color", lightPurple); //deselect element
                 thisButton.attr("selected", false);
@@ -66,10 +68,33 @@ function makeFileBtnToggleable() {
     })
 }
 
+function populateFileBrowser(currId, currType, currPath) {
+    getDirectoryInfo(currId, currType, currPath).then(fileResult => { //populate the file browser
+        $("#listedFileLocation").empty()
+        const directory = fileResult["directory"]
+        for (let i = 0; i < directory["directories"].length; i++) {
+            const friendlyName = directory["directories"][i].friendlyName
+            const fullPath = directory["directories"][i].resourcePath
+            $("#listedFileLocation").append
+                (`<button class="fileBtn" id="file${i}" resourcePath=${fullPath}><i class="fa fa-folder"></i> ${friendlyName} </button>`)
+        }
+        makeFileBtnResponsive() //make the file buttons toggleable
+    })
+}
+
+function deselectOtherButtons(buttonClass, id) { //deselect other buttons of the same class when another storage button is clicked
+    $(buttonClass).each(function () {
+        if ($(this).attr("id") != id) {
+            $(this).attr("selected", false);
+            $(this).css("background-color", lightPurple);
+        }
+    })
+}
+
 
 $(document).ready(function() {
 
-    getStorages().then(result => {
+    getStorages().then(result => { //populate storage menu
         for (let i = 0; i < result["storageList"].length; i++) {
             const storageName = result["storageList"][i].storageName
             const storageId = result["storageList"][i].storageId
@@ -82,36 +107,28 @@ $(document).ready(function() {
 
             $(this).on("click", function() {
                 const currentColor = $(this).css("background-color")
-                var currId = $(this).attr("id");
-                var currType = $(this).attr("storageType");
-                var currName = $(this).text()
+                var idOfButtonClicked = $(this).attr("id")
 
-                if (currentColor === lightPurple) { //select element
+                if (currentColor === lightPurple) { //select element, deselect the others
                     $(this).css("background-color", darkPurple);
                     $(this).attr("selected", true);
                     
-                    $(".squareBtn").each(function() { //deselect other storage buttons when another storage button is clicked
-                        if ($(this).attr("id") != currId) {
-                            $(this).attr("selected", false);
-                            $(this).css("background-color", lightPurple);
-                        }
-                    })
-
-                    getDirectoryInfo(currId, currType, currName).then(fileResult => {
-                        $("#listedFileLocation").empty()
-                        const directory = fileResult["directory"]
-                        for (let i = 0; i < directory["directories"].length; i++) {
-                            const friendlyName = directory["directories"][i].friendlyName
-                            $("#listedFileLocation").append(`<button class="fileBtn" id="file${i}"><i class="fa fa-folder"></i> ${friendlyName} </button>`)
-                        }
-                        makeFileBtnToggleable()
-                    })
+                    deselectOtherButtons(".squareBtn", idOfButtonClicked)
 
                 } else {
-                    $(this).css("background-color", lightPurple); //deselect element
+                    $(this).css("background-color", lightPurple); //deselect element when clicked on again
                     $(this).attr("selected", false);
                 }
             });
+
+            $(this).on("dblclick", function() { //on double click, select other storage
+                globalStorageId = $(this).attr("id");
+                globalStorageType = $(this).attr("storageType");
+                deselectOtherButtons(".squareBtn", globalStorageId)
+                populateFileBrowser(globalStorageId, globalStorageType, "/") //populate file browser with files at root level of a storage
+            })
+
+
         });
     })
 
