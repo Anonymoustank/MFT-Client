@@ -47,7 +47,9 @@ function makeFileBtnResponsive() {
         thisButton.attr("selected", false);
 
         thisButton.on("dblclick", function() { //on double click, navigate to that directory
-            populateFileBrowser(globalStorageId, globalStorageType, thisButton.attr("resourcePath"))
+            if (thisButton.attr("objectType") === "directory") {
+                populateFileBrowser(globalStorageId, globalStorageType, thisButton.attr("resourcePath"))
+            }
         })
 
         thisButton.on("click", function() {
@@ -71,12 +73,19 @@ function makeFileBtnResponsive() {
 function populateFileBrowser(currId, currType, currPath) {
     getDirectoryInfo(currId, currType, currPath).then(fileResult => { //populate the file browser
         $("#listedFileLocation").empty()
+        console.log(fileResult)
         const directory = fileResult["directory"]
         for (let i = 0; i < directory["directories"].length; i++) {
             const friendlyName = directory["directories"][i].friendlyName
             const fullPath = directory["directories"][i].resourcePath
             $("#listedFileLocation").append
-                (`<button class="fileBtn" id="file${i}" resourcePath=${fullPath}><i class="fa fa-folder"></i> ${friendlyName} </button>`)
+                (`<button class="fileBtn" objectType="directory" id="file${i}" resourcePath=${fullPath}><i class="fa fa-folder"></i> ${friendlyName} </button>`)
+        }
+        for (let i = 0; i < directory["files"].length; i++) {
+            const friendlyName = directory["files"][i].friendlyName
+            const fullPath = directory["files"][i].resourcePath
+            $("#listedFileLocation").append
+                (`<button class="fileBtn" objectType="file" id="file${i}" resourcePath=${fullPath}><i class="fa fa-file"></i> ${friendlyName} </button>`)
         }
         makeFileBtnResponsive() //make the file buttons toggleable
     })
@@ -125,6 +134,10 @@ $(document).ready(function() {
                 globalStorageId = $(this).attr("id");
                 globalStorageType = $(this).attr("storageType");
                 deselectOtherButtons(".squareBtn", globalStorageId)
+
+                $(this).css("background-color", darkPurple);
+                $(this).attr("selected", true);
+
                 populateFileBrowser(globalStorageId, globalStorageType, "/") //populate file browser with files at root level of a storage
             })
 
