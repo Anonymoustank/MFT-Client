@@ -20,6 +20,15 @@ async function getStorages() { //get names of storages from backend
     }
 }
 
+function getParentDirectory(directory) { //get parent directory of specific directory (usually the current directory)
+    parentDir = directory.substring(0, directory.lastIndexOf('/')) //gets rid of the last / and everything after it
+    if (parentDir == "") { //this happens if the directory is / or /someName
+        return "/"
+    } else {
+        return parentDir
+    }
+  }
+
 async function getDirectoryInfo(currStorageId, currStorageType, currPath) { //get the files/directories that a storage has
     try {
         $("#listedFileLocation").empty()
@@ -52,7 +61,7 @@ function makeFileBtnResponsive() {
             }
         })
 
-        thisButton.on("click", function() {
+        thisButton.on("click", function() { //on single click, change button color and deselect other buttons
             
             const currentColor = thisButton.css("background-color")
 
@@ -73,15 +82,19 @@ function makeFileBtnResponsive() {
 function populateFileBrowser(currId, currType, currPath) {
     getDirectoryInfo(currId, currType, currPath).then(fileResult => { //populate the file browser
         $("#listedFileLocation").empty()
-        console.log(fileResult)
-        const directory = fileResult["directory"]
+
+        const parentDir = getParentDirectory(currPath) //add link to parent directory
+        $("#listedFileLocation").append
+                (`<button class="fileBtn" objectType="directory" id="parentDir" resourcePath=${parentDir}><i class="fa fa-folder"></i> .. </button>`)
+
+        const directory = fileResult["directory"] //add links to subdirectories
         for (let i = 0; i < directory["directories"].length; i++) {
             const friendlyName = directory["directories"][i].friendlyName
             const fullPath = directory["directories"][i].resourcePath
             $("#listedFileLocation").append
-                (`<button class="fileBtn" objectType="directory" id="file${i}" resourcePath=${fullPath}><i class="fa fa-folder"></i> ${friendlyName} </button>`)
+                (`<button class="fileBtn" objectType="directory" id="dir${i}" resourcePath=${fullPath}><i class="fa fa-folder"></i> ${friendlyName} </button>`)
         }
-        for (let i = 0; i < directory["files"].length; i++) {
+        for (let i = 0; i < directory["files"].length; i++) { //add all of the files
             const friendlyName = directory["files"][i].friendlyName
             const fullPath = directory["files"][i].resourcePath
             $("#listedFileLocation").append
