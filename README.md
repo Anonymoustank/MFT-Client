@@ -8,6 +8,9 @@ The backend can be found [here](https://github.com/Anonymoustank/mft-client-back
 - Run "npm start" in the MFT-Client folder
 - Install the backend and run it (instructions found in the link above)
 
+## Contact:
+Contact Pranav Kadekodi at pkadekodi3@gatech.edu if you have any questions.
+
 ## Dependencies to run this app:
 - npm
 - git
