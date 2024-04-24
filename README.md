@@ -20,5 +20,5 @@ Contact Pranav Kadekodi at pkadekodi3@gatech.edu if you have any questions.
 ## Screenshots
 <img width="583" alt="image" src="https://github-production-user-asset-6210df.s3.amazonaws.com/54193508/322660966-51df9c20-c830-459c-a787-93156a6edd5c.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240416%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240416T001355Z&X-Amz-Expires=300&X-Amz-Signature=69e49f84ec2fc03b0c5b63c5daf0217f3aefaf9e02918ff3f0cb82cdbe2d76ea&X-Amz-SignedHeaders=host&actor_id=54193508&key_id=0&repo_id=759606260">
 <img width="583" alt="image" src="https://github.com/Anonymoustank/MFT-Client/assets/54193508/93098569-4c71-4a07-b791-2f722adccfc0">
-<img width="581" alt="image" src="https://github.com/Anonymoustank/MFT-Client/assets/54193508/fa350968-c189-4962-a48d-541e277fb784">
+<img width="583" alt="image" src="https://github.com/Anonymoustank/MFT-Client/assets/54193508/75653dd9-eb4e-4427-a0ab-7ef50e924f13">
 
