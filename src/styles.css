@@ -323,10 +323,7 @@ h3 {
   width: 65%;
   float: right;
   background: #524f59;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
-  overflow: auto; /*maybe change to overflow: scroll? */
+  overflow: auto;
   box-sizing: border-box;
   padding: 0.5em;
   overflow-x: hidden; /* remove horizontal scroll bar */
@@ -349,10 +346,7 @@ h3 {
   width: 35%;
   float: left;
   background: #625d6e;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
-  overflow: hidden; /*maybe change to overflow: scroll? */
+  overflow: hidden;
   box-sizing: border-box;
   padding: 0.5em;
   overflow-x: hidden; /* remove horizontal scroll bar */
@@ -405,17 +399,31 @@ h3 {
 }
 
 .buttonContainer {
-  margin: 15px;
-  overflow-y: auto;
-  .squareBtn {
-    margin: 10px;
-    min-width: 150px;
+  height: 100%; /* cap height to make scroll bar appear, or change overflow */
+  background: #3b3646;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0.5em;
+  overflow-x: hidden; /* remove horizontal scroll bar */
+
+
+  .storageOptions {
+    max-height: 65vh;
   }
+
   .buttonPanel {
+    margin-top: 15vh;
     position: absolute;
     bottom: 20px;
-    right: 50%;
-    transform: translateX(50%);
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+
+    .btn {
+      margin: 0.6em 0 0 0;
+    }
+
   }
 }
 
