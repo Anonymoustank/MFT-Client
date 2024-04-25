@@ -90,20 +90,26 @@ function populateFileBrowser(currId, currType, currPath) {
         $("#listedFileLocation").append
                 (`<button class="fileBtn" objectType="directory" id="parentDir" resourcePath=${parentDir}><i class="fa fa-folder"></i> .. </button>`)
 
-        const directory = fileResult["directory"] //add links to subdirectories
-        for (let i = 0; i < directory["directories"].length; i++) {
-            const friendlyName = directory["directories"][i].friendlyName
-            const fullPath = directory["directories"][i].resourcePath
-            $("#listedFileLocation").append
-                (`<button class="fileBtn" objectType="directory" id="dir${i}" resourcePath=${fullPath}><i class="fa fa-folder"></i> ${friendlyName} </button>`)
+        try { //the code within the try block can return an error if permission is denied
+            const directory = fileResult["directory"] //add links to subdirectories
+            for (let i = 0; i < directory["directories"].length; i++) {
+                const friendlyName = directory["directories"][i].friendlyName
+                const fullPath = directory["directories"][i].resourcePath
+                $("#listedFileLocation").append
+                    (`<button class="fileBtn" objectType="directory" id="dir${i}" resourcePath=${fullPath}><i class="fa fa-folder"></i> ${friendlyName} </button>`)
+            }
+            for (let i = 0; i < directory["files"].length; i++) { //add all of the files
+                const friendlyName = directory["files"][i].friendlyName
+                const fullPath = directory["files"][i].resourcePath
+                $("#listedFileLocation").append
+                    (`<button class="fileBtn" objectType="file" id="file${i}" resourcePath=${fullPath}><i class="fa fa-file"></i> ${friendlyName} </button>`)
+            }
+        } catch (error) {
+            console.error("Error displaying files/directories (HINT: do you have the permissiont to view this directory?): ", error)
+        } finally {
+            makeFileBtnResponsive() //make the file buttons toggleable
         }
-        for (let i = 0; i < directory["files"].length; i++) { //add all of the files
-            const friendlyName = directory["files"][i].friendlyName
-            const fullPath = directory["files"][i].resourcePath
-            $("#listedFileLocation").append
-                (`<button class="fileBtn" objectType="file" id="file${i}" resourcePath=${fullPath}><i class="fa fa-file"></i> ${friendlyName} </button>`)
-        }
-        makeFileBtnResponsive() //make the file buttons toggleable
+
     })
 }
 
