@@ -83,6 +83,9 @@ function populateFileBrowser(currId, currType, currPath) {
     getDirectoryInfo(currId, currType, currPath).then(fileResult => { //populate the file browser
         $("#listedFileLocation").empty()
 
+        $('#pathInfo').css('visibility', 'visible'); //make path visibile
+        $('#pathInfo').text(`Path: ${currPath}`);
+
         const parentDir = getParentDirectory(currPath) //add link to parent directory
         $("#listedFileLocation").append
                 (`<button class="fileBtn" objectType="directory" id="parentDir" resourcePath=${parentDir}><i class="fa fa-folder"></i> .. </button>`)
@@ -151,6 +154,8 @@ $(document).ready(function() {
 
                 $(this).css("background-color", darkPurple);
                 $(this).attr("selected", true);
+                
+                $('#pathInfo').css('visibility', 'hidden'); //make path invisible
 
                 populateFileBrowser(globalStorageId, globalStorageType, "/") //populate file browser with files at root level of a storage
             })
