@@ -279,6 +279,7 @@ h3 {
 }
 
 .squareBtn {
+  position: relative;
   cursor: pointer;
   border: 1px solid #1e1f20;
   background-color: #625d6e;
@@ -288,6 +289,21 @@ h3 {
   color: white; /* White text */
   margin: 0 0.6em 1em 0.6em;
   vertical-align: top;
+
+  .storageType {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-10px, 50%);
+  }
+
+  .storageId {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 10px;
+    transform: translate(-10px, -100%);
+  }
 }
 
 .storageOptions {

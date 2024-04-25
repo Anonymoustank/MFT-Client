@@ -121,7 +121,8 @@ $(document).ready(function() {
             const storageName = result["storageList"][i].storageName
             const storageId = result["storageList"][i].storageId
             const storageType = result["storageList"][i].storageType
-            $("#mainStorageLocation").append(`<button class='squareBtn' storageType=${storageType} id=${storageId}>${storageName}</button>`); //create buttons with storage names
+            const newButtonString = `<button class='squareBtn' storageType=${storageType} id=${storageId}>${storageName} <span class='storageType'>${storageType}</span> <span class='storageId'>${storageId}</span> </button>`
+            $("#mainStorageLocation").append(newButtonString); //create buttons with storage names
         }
 
         $(".squareBtn").each(function() { //make buttons toggle-able
