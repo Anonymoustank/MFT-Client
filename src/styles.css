@@ -399,7 +399,9 @@ h3 {
 }
 
 .buttonContainer {
-  height: 100%; /* cap height to make scroll bar appear, or change overflow */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   background: #3b3646;
   width: 100%;
   overflow: hidden;
@@ -407,9 +409,8 @@ h3 {
   padding: 0.5em;
   overflow-x: hidden; /* remove horizontal scroll bar */
 
-
-  .storageOptions {
-    max-height: 65vh;
+  .squareBtn {
+    width: 20%;
   }
 
   .buttonPanel {
